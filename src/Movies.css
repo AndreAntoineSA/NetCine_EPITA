@@ -1,0 +1,32 @@
+* {
+}
+
+.movies {
+  background-color: #121b25;
+  max-width: 500px;
+  border: 1px solid black;
+  margin-bottom: 40px;
+}
+
+.movie_image {
+  width: 100%;
+  object-fit: contain;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.movie_caption {
+  font-weight: normal;
+  padding: 20px;
+  color: aliceblue; 
+
+}
+.movies_header {
+  display: flex;
+  align-items: center;
+  padding: 20px 10px;
+  color: aliceblue; 
+
+}
+.movies_avatar {
+  margin-right: 10px;
+}
