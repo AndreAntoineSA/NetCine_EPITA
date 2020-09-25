@@ -65,12 +65,22 @@ function App() {
       unsubscribe();
     };
   }, [user, username]);
+  // useEffect(() => {
+  //   db.collection("movies")
+  //     .orderBy("timestamp", "desc")
+  //     .onSnapshot((snapshot) => {
+  //       setMovies(snapshot.docs.map((doc) => doc.data()));
+  //     });
+  // }, []);
   useEffect(() => {
-    db.collection("movies")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        setMovies(snapshot.docs.map((doc) => doc.data()));
-      });
+    db.collection("movies").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+      setMovies(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          movie: doc.data(),
+        }))
+      );
+    });
   }, []);
 
   const signUp = (event) => {
@@ -177,16 +187,18 @@ function App() {
         )}
       </div>
       <div className="App_posts">
-      {movies.map((movie) => (
-        <Movies
-          
-          username={movie.username}
-          caption={movie.caption}
-          imageUrl={movie.imageUrl}
-        ></Movies>
-      ))}
+        {movies.map(({id, movie}) => (
+          <Movies
+            key={id}
+            postId={id}
+            user={user}
+            username={movie.username}
+            caption={movie.caption}
+            imageUrl={movie.imageUrl}
+          ></Movies>
+        ))}
       </div>
-      
+
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (

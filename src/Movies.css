@@ -17,16 +17,39 @@
 .movie_caption {
   font-weight: normal;
   padding: 20px;
-  color: aliceblue; 
-
+  color: aliceblue;
 }
 .movies_header {
+  
   display: flex;
   align-items: center;
   padding: 20px 10px;
-  color: aliceblue; 
-
+  color: aliceblue;
 }
 .movies_avatar {
   margin-right: 10px;
+}
+
+.post_comment {
+  display: flex;
+  margin-top: 10px;
+}
+
+.post_input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-top: 1px solid black;
+}
+
+.post_button {
+  flex: 0;
+  border: none;
+  border-top: 1px solid black;
+  background-color: transparent;
+  color: yellow;
+}
+.review {
+  color: rgb(60, 226, 190);
+  padding: 20px;
 }

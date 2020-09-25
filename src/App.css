@@ -5,6 +5,9 @@
   background-color: #132233;
 }
 .App_head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background-color: #121b25;
   padding: 20px;
   object-fit: contain; /* keep logo same size and not strech the image*/
@@ -23,4 +26,6 @@
 
 .App_posts {
   padding: 20px;
+  /* display: flex;
+  justify-content: center; */
 }
