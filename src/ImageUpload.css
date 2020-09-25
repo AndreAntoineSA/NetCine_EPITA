@@ -6,11 +6,10 @@
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: white;
+  background-color: #132233;
   border-top: black;
-
+  color: aliceblue;
 }
-.imageupload_progress{
-    width: 100%;
-
+.imageupload_progress {
+  width: 100%;
 }

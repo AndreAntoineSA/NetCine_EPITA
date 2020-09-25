@@ -65,22 +65,18 @@ function App() {
       unsubscribe();
     };
   }, [user, username]);
-  // useEffect(() => {
-  //   db.collection("movies")
-  //     .orderBy("timestamp", "desc")
-  //     .onSnapshot((snapshot) => {
-  //       setMovies(snapshot.docs.map((doc) => doc.data()));
-  //     });
-  // }, []);
+
   useEffect(() => {
-    db.collection("movies").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-      setMovies(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          movie: doc.data(),
-        }))
-      );
-    });
+    db.collection("movies")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setMovies(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            movie: doc.data(),
+          }))
+        );
+      });
   }, []);
 
   const signUp = (event) => {
@@ -187,7 +183,7 @@ function App() {
         )}
       </div>
       <div className="App_posts">
-        {movies.map(({id, movie}) => (
+        {movies.map(({ id, movie }) => (
           <Movies
             key={id}
             postId={id}
@@ -200,7 +196,9 @@ function App() {
       </div>
 
       {user?.displayName ? (
+        <div className="imgUpload"> 
         <ImageUpload username={user.displayName} />
+        </div>
       ) : (
         <h3>Please Log In to continue...</h3>
       )}
