@@ -25,9 +25,11 @@
 }
 
 .App_posts {
-  padding: 20px;
-  /* display: flex;
-  justify-content: center; */
+  /* //padding: 20px; */
+  justify-content: center;
+
+   display: flex;
+   flex-direction: column;
 }
 
 .imgUpload {

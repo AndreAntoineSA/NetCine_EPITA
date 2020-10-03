@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
+import axios from "./axios";
+import Pusher from "pusher-js";
 
 function getModalStyle() {
   const top = 50;
@@ -66,8 +68,28 @@ function App() {
     };
   }, [user, username]);
 
+  const fetchPosts = async () =>
+    await axios.get("/sync").then((response) => {
+      console.log(response);
+      setMovies(response.data);
+    });
+
   useEffect(() => {
-    db.collection("movies")
+    const pusher = new Pusher("2b69997430639cdbd8c3", {
+      cluster: "eu",
+    });
+
+    const channel = pusher.subscribe("posts");
+    channel.bind("inserted", function (data) {
+      fetchPosts();
+    });
+  });
+
+  useEffect(() => {
+    fetchPosts();
+
+    //firebase code
+    /*db.collection("movies")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
         setMovies(
@@ -76,8 +98,9 @@ function App() {
             movie: doc.data(),
           }))
         );
-      });
+      });*/
   }, []);
+  console.log("post are >>>", movies);
 
   const signUp = (event) => {
     event.preventDefault();
@@ -183,21 +206,22 @@ function App() {
         )}
       </div>
       <div className="App_posts">
-        {movies.map(({ id, movie }) => (
+        {movies.map((post) => (
           <Movies
-            key={id}
-            postId={id}
             user={user}
-            username={movie.username}
-            caption={movie.caption}
-            imageUrl={movie.imageUrl}
+            key={post._id}
+            postId={post._id}
+            //username={movie.username}
+            username={post.user}
+            caption={post.caption}
+            imageUrl={post.image}
           ></Movies>
         ))}
       </div>
 
       {user?.displayName ? (
-        <div className="imgUpload"> 
-        <ImageUpload username={user.displayName} />
+        <div className="imgUpload">
+          <ImageUpload username={user.displayName} />
         </div>
       ) : (
         <h3>Please Log In to continue...</h3>

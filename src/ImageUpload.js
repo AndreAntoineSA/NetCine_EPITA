@@ -2,12 +2,15 @@ import { Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { storage, db } from "./firebase";
 import firebase from "firebase";
+import axios from "./axios";
 import "./ImageUpload.css";
 
 function ImageUpload({ username }) {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("null");
   const [progress, setProgress] = useState(0);
+  const [url, setUrl] = useState("");
+
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -37,6 +40,13 @@ function ImageUpload({ username }) {
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
+           setUrl(url);
+            axios.post("/upload", {
+              caption: caption,
+              user: username,
+              image: url,
+            });
+
             db.collection("movies").add({
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               caption: caption,
@@ -60,7 +70,9 @@ function ImageUpload({ username }) {
         value={caption}
       ></input>
       <input type="file" onChange={handleChange}></input>
-      <Button className="button" onClick={handleUpload}>Upload</Button>
+      <Button className="button" onClick={handleUpload}>
+        Upload
+      </Button>
     </div>
   );
 }
