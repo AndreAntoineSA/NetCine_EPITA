@@ -2,28 +2,31 @@
 }
 
 .movies {
-  background-color: #121b25;
-  max-width: 500px;
+  /* background-color: #121b25; */
+  /* background-color: #292826; */
+  background-color: #292826;
+  width: fit-content;
+
+  max-width: 700px;
   border: 1px solid black;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 
 .movie_image {
   width: 100%;
   object-fit: contain;
-  border-top: 1px solid black;
+  border-top: 1px solid yellowgreen;
   border-bottom: 1px solid black;
 }
 .movie_caption {
   font-weight: normal;
-  padding: 20px;
+  padding: 10px;
   color: aliceblue;
 }
 .movies_header {
-  
   display: flex;
   align-items: center;
-  padding: 20px 10px;
+  padding: 10px 10px;
   color: aliceblue;
 }
 .movies_avatar {
@@ -50,6 +53,6 @@
   color: yellow;
 }
 .review {
-  color: rgb(60, 226, 190);
-  padding: 20px;
+  color: whitesmoke;
+  padding: 10px;
 }

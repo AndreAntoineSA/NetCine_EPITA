@@ -6,8 +6,10 @@
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: #132233;
-  border-top: black;
+  /* background-color: #132233; */
+  background-color: #292826;
+
+  border-top: yellowgreen;
   color: aliceblue;
 }
 .imageupload_progress {

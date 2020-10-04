@@ -40,8 +40,8 @@ function Movies({ postId, user, username, caption, imageUrl }) {
       <div className="movies_header">
         <Avatar
           className="movies_avatar"
-          alt="Andre"
-          scr="static/images/avatar/1.jpg"
+          alt={username}
+          src="/static/images/avatar/1.jpg"
         />
         <h3>{username}</h3>
       </div>
@@ -60,24 +60,23 @@ function Movies({ postId, user, username, caption, imageUrl }) {
       </div>
       {user && (
         <form className="post_comment">
-        <input
-          className="post_input"
-          type="text"
-          placeholder="Add a review..."
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        />
-        <button
-          className="post_button"
-          disabled={!comment}
-          type="submit"
-          onClick={postComment}
-        >
-          Post
-        </button>
-      </form>
+          <input
+            className="post_input"
+            type="text"
+            placeholder="Add a review..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button
+            className="post_button"
+            disabled={!comment}
+            type="submit"
+            onClick={postComment}
+          >
+            Post
+          </button>
+        </form>
       )}
-      
     </div>
   );
 }

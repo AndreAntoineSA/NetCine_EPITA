@@ -132,8 +132,8 @@ function App() {
           <form className="App_signUp">
             <center>
               <img
-                className="App_headImg"
-                src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg"
+                className="App_headImg nav_logo"
+                src="NetCinélogo.png"
                 alt="logo"
               ></img>
             </center>
@@ -166,8 +166,8 @@ function App() {
           <form className="App_signUp">
             <center>
               <img
-                className="App_headImg"
-                src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg"
+                className="App_headImg  nav_logo "
+                src="NetCinélogo.png"
                 alt="logo"
               ></img>
             </center>
@@ -192,40 +192,59 @@ function App() {
       </Modal>
       <div class="App_head">
         <img
-          className="App_headImg"
-          src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg"
+          className="App_headImg nav_logo"
+          src="NetCinélogo.png"
           alt="NetCiné"
         ></img>
         {user ? (
-          <Button onClick={() => auth.signOut()}>Logout </Button>
+          <Button color="primary" onClick={() => auth.signOut()}>
+            Logout{" "}
+          </Button>
         ) : (
           <div>
-            <Button onClick={() => setOpenSignIn(true)}>Sign In </Button>
-            <Button onClick={() => setOpen(true)}>Sign Up </Button>
+            <Button
+              // variant="outlined"
+              color="primary"
+              onClick={() => setOpenSignIn(true)}
+            >
+              Sign In{" "}
+            </Button>
+            <Button
+              // variant="outlined"
+              color="primary"
+              onClick={() => setOpen(true)}
+            >
+              Sign Up{" "}
+            </Button>
           </div>
         )}
       </div>
+      {/* movies posting */}
       <div className="App_posts">
-        {movies.map((post) => (
-          <Movies
-            user={user}
-            key={post._id}
-            postId={post._id}
-            //username={movie.username}
-            username={post.user}
-            caption={post.caption}
-            imageUrl={post.image}
-          ></Movies>
-        ))}
-      </div>
-
-      {user?.displayName ? (
-        <div className="imgUpload">
-          <ImageUpload username={user.displayName} />
+        <div className="App_postLeft">
+          {movies.map((post) => (
+            <Movies
+              user={user}
+              key={post._id}
+              postId={post._id}
+              //username={movie.username}
+              username={post.user}
+              caption={post.caption}
+              imageUrl={post.image}
+            ></Movies>
+          ))}
         </div>
-      ) : (
-        <h3>Please Log In to continue...</h3>
-      )}
+        
+      </div>
+      <div className="App_postRight">
+          {user?.displayName ? (
+            <div className="imgUpload">
+              <ImageUpload username={user.displayName} />
+            </div>
+          ) : (
+            <h3>Please Log In to continue...</h3>
+          )}
+        </div>
     </div>
   );
 }
