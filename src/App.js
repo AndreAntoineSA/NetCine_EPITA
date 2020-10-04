@@ -161,7 +161,11 @@ function App() {
           </form>
         </div>
       </Modal>
-      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
+      <Modal
+        className="modal"
+        open={openSignIn}
+        onClose={() => setOpenSignIn(false)}
+      >
         <div style={modalStyle} className={classes.paper}>
           <form className="App_signUp">
             <center>
@@ -234,17 +238,16 @@ function App() {
             ></Movies>
           ))}
         </div>
-        
       </div>
       <div className="App_postRight">
-          {user?.displayName ? (
-            <div className="imgUpload">
-              <ImageUpload username={user.displayName} />
-            </div>
-          ) : (
-            <h3>Please Log In to continue...</h3>
-          )}
-        </div>
+        {user?.displayName ? (
+          <div className="imgUpload">
+            <ImageUpload username={user.displayName} />
+          </div>
+        ) : (
+          <h3>Please Log In to continue...</h3>
+        )}
+      </div>
     </div>
   );
 }

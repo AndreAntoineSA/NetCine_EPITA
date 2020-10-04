@@ -5,15 +5,8 @@ import firebase from "firebase";
 import axios from "./axios";
 import "./ImageUpload.css";
 
-import Drawer from "@material-ui/core/Drawer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
-import clsx from "clsx";
 
-import Divider from "@material-ui/core/Divider";
-// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const drawerWidth = 240;
 
@@ -78,20 +71,12 @@ function ImageUpload({ username }) {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("null");
   const [progress, setProgress] = useState(0);
-  const classes = useStyles();
-  const theme = useTheme();
 
   const [open, setOpen] = React.useState(false);
 
   const [url, setUrl] = useState("");
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
