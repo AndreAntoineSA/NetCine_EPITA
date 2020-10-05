@@ -1,4 +1,4 @@
-#NetCine_EPITA 
+# NetCine_EPITA
 
 Web app link: https://netcine-epita.web.app/
 
