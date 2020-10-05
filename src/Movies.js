@@ -8,6 +8,7 @@ import firebase from "firebase";
 function Movies({ postId, user, username, caption, imageUrl }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [rating, setRating] = useState("");
 
   useEffect(() => {
     let unsubscribe;
@@ -30,10 +31,12 @@ function Movies({ postId, user, username, caption, imageUrl }) {
     event.preventDefault();
     db.collection("movies").doc(postId).collection("review").add({
       text: comment,
+      rating: rating,
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setComment("");
+    setRating("");
   };
   return (
     <div className="movies">
@@ -54,7 +57,10 @@ function Movies({ postId, user, username, caption, imageUrl }) {
       <div className="review">
         {comments.map((comment) => (
           <p>
-            <strong>{comment.username}</strong> {comment.text}
+            <strong className="comment">{comment.username}</strong> {comment.text}{" "}
+            
+              <strong className="rating">Rated:{comment.rating}</strong>
+            
           </p>
         ))}
       </div>
@@ -66,6 +72,13 @@ function Movies({ postId, user, username, caption, imageUrl }) {
             placeholder="Add a review..."
             value={comment}
             onChange={(e) => setComment(e.target.value)}
+          />
+          <input
+            className="post_input"
+            type="number"
+            placeholder="Add a rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
           />
           <button
             className="post_button"

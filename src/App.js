@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import requests from "./requests";
+import Row from "./Row";
 import "./App.css";
 import Movies from "./Movies";
 import { db, auth } from "./firebase";
@@ -224,6 +226,7 @@ function App() {
         )}
       </div>
       {/* movies posting */}
+      <Row fetchUrl={requests.fetchMostwatched} isLargeRow />
       <div className="App_posts">
         <div className="App_postLeft">
           {movies.map((post) => (
